@@ -161,7 +161,7 @@ Three distances (similarity) are computed:
 
 The quadruplet loss's goal is to maximize the difference between ap_dist and an_dist, as well as to maximize the  difference in distance between ap_dist and nn_dist.
 
-<img src='img/quad_loss_simple.png' style="width:35%">
+<img src='img/quad_loss_simple.png' width="35%">
 
 The exact quadruplet loss is expressed by:
 
