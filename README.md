@@ -20,7 +20,7 @@ A user-interactive version of this algorithm is deployed to the public on Amazon
 
 An overview of the architecture is shown below. An executive summary is presented in the next section, and more detailed explanations are provided after that.
 
-<img src='img/Architecture.png' style="max-width:100%">
+<img src='img/Architecture.png' style="width:100%">
 
 # Executive Summary
 
@@ -66,7 +66,7 @@ Three distances (similarities) are computed:
 
 The quadruplet loss's goal is to maximize the difference between ap_dist and an_dist, as well as to maximize the difference between ap_dist and nn_dist.
 
-<img src='img/quad_loss_simple.png' style="max-width:35%">
+<img src='img/quad_loss_simple.png' style="width:35%">
 
 **Evaluation "One v. All":**  
 To evaluate the class of an image, the following steps are performed:  
@@ -90,7 +90,7 @@ The database used is VVGFace2 [1]. It contains 9,131 celebrities, each with hund
 
 Each image from the original dataset is cropped using the MTCNN module, which is in itself a CNN [2]. MTCNN identifies the faces contained in a photo and provide their accurate locations along with other parameters such as the confidence, the eyes and nose positions, etc. 
 
-<img src='img/cropping.png' style="max-width:70%">
+<img src='img/cropping.png' style="width:70%">
 
 Because the native image is cropped and there are various zoom levels, the resulting face image often times has a poor resolution. Since the original dataset has so many images compared to the 14 I needed, the selection of the images is performed in a loop as follows:
 
@@ -161,7 +161,7 @@ Three distances (similarity) are computed:
 
 The quadruplet loss's goal is to maximize the difference between ap_dist and an_dist, as well as to maximize the  difference in distance between ap_dist and nn_dist.
 
-<img src='img/quad_loss_simple.png' style="max-width:30%">
+<img src='img/quad_loss_simple.png' style="width:30%">
 
 The exact quadruplet loss is expressed by:
 
@@ -171,7 +171,7 @@ Alpha and beta are two margin parameters. They force the model to optimize itsel
 
 Based on that computed loss, the model optimizes the weights of the encoder and the similarity CNNs.
 
-<img src='img/training.png' style="max-width:50%">
+<img src='img/training.png' style="width:50%">
 
 ## Evaluation - One v. All approach
 
@@ -192,7 +192,7 @@ To predict the class of an image, the following steps are performed:
 - the class of the image from the training set that has the smallest distance to the tested image is returned.
 - that class is returned to the user, along with the photo that yielded the smallest distance.
 
-<img src='img/testing.png' style="max-width:50%">
+<img src='img/testing.png' style="width:50%">
 
 ## Testing and tuning
 
@@ -219,7 +219,7 @@ The following parameters were fine-tuned:
 - Selection method: the algorithm selects the class of the image with the smallest distance to the test image. I have tested other methods, including averaging the smallest n results from each class (n=2, 3, 4) and selecting the class with the smallest average. This method was adding additional computation time for a marginal gain in accuracy, so it was discarded (it is still in the code if needed! See the "method" argument of *SLD_models.make_prediction_quad*).
     
     
-<img src='img/history_quad_final_B8_E11_S280_k20_lr0.001_M0.25_MM0.03_em128.jpg' style="max-width:100%">
+<img src='img/history_quad_final_B8_E11_S280_k20_lr0.001_M0.25_MM0.03_em128.jpg' style="width:100%">
 
 For smaller datasets, the ones containing 10 and 100 classes, an accuracy of near 100% is attained. For the full training set comprising of 9,131 classes, an accuracy of 40-50% was obtained (for exact matches). It is noted that after ranking all predicted classes by their probability, it is observed than when the model predicts the wrong class, the ground truth class is usually in the very first following predictions.
 
@@ -292,6 +292,6 @@ The algorithm has a robust and customizable architecture that can be enhanced an
 8. Beyond triplet loss : One shot learning experiments with quadruplet loss, https://medium.com/@crimy/beyond-triplet-loss-one-shot-learning-experiments-with-quadruplet-loss-16671ed51290
 9. Thibault Dody, https://www.linkedin.com/in/thibault-dody
 
-<img src='img/cat.jpg' style="max-width:100%">
+<img src='img/cat.jpg' style="width:100%">
 
 Thanks for reading!
